@@ -9,7 +9,7 @@ var app = express();
 var brakedown = require('./litcoin.js');
 
 // join html css from stuff directory
-app.use(express.static(path.join(__dirname,'stuff')));
+app.use(express.static(path.join(__dirname, 'stuff')));
 
 
 //socket stuff from http://socket.io/docs/
@@ -19,16 +19,14 @@ var server = require('http').createServer(app).listen(process.env.PORT || 3000);
 var io = require('socket.io').listen(server);
 
 // Reduce the logging output of Socket.IO
-io.set('log level',1);
+io.set('log level', 1);
 
 // Listen for Socket.IO Connections. Once connected, start the game logic.
-io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function(socket) {
     console.log('Someone has connected!');
     brakedown.initGame(io, socket);
 });
 
-io.sockets.on('disconnect', function () {
+io.sockets.on('disconnect', function() {
     console.log('Someone has disconnected!');
 });
-
-
