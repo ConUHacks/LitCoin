@@ -1,11 +1,35 @@
 body {
-    background-color: lightblue;
+  /* Set the font family to Helvetica, Arial, sans-serif */
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  background-color: lightblue;
+  color: black;
+  padding-top: 70px;
+}
+
+button {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 48px;
 }
 
 h1 {
+<<<<<<< HEAD
     font-family: 'Lato', sans-serif;
     color: #000000;
     font-size: 16px;
+=======
+  /* Set the font color to #7ab55c or a color of your choosing */
+  line
+  color: darkblue;
+  text-align: center;
+  vertical-align: center;
+}
+
+main {
+  max-width: 700px;
+  margin: auto;
+  text-align:center;
+  vertical-align: center;
 }
 
 
