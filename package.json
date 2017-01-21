@@ -1,24 +1,27 @@
 {
-  "name": "stocksim",
-  "version": "1.0.0",
+  "name": "litcoin",
+  "version": "0.2.5",
   "description": "game",
+  "engines": {
+    "node": "5.9.1"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-      "express": "3.x",
-      "sockets.io":"0.9"
+    "socket": "3.10.8",
+    "express": "3.10.8"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gucci-ninja/hackathon.git"
+    "url": "git+https://github.com/gucci-ninja/ConUHacks.git"
   },
   "bugs": {
     "url": "https://github.com/gucci-ninja/hackathon/issues"
   },
-  "homepage": "https://github.com/gucci-ninja/hackathon#readme"
+  "homepage": "https://github.com/gucci-ninja/hackathon#readme",
+  "devDependencies": {}
 }
