@@ -1,9 +1,71 @@
 body {
-    background-color: lightblue;
+  /* Set the font family to Helvetica, Arial, sans-serif */
+  font-family: Helvetica, Arial, sans-serif;
+  /* Set the line-height to 1.5 */
+  line-height: 1.5;
+  /*
+    Set the background color to #ebeef0 or a colour of your choosing
+    To find colours, you can visit this website: http://www.w3schools.com/colors/colors_names.asp
+  */
+  background-color: lightblue;
+  /* Set the font color to #30373b or a colour of your choosing */
+  color: black;
+}
+
+button {
+  font-family: Georgia, sans-serif;
+  font-size: 48px;
 }
 
 h1 {
-    font-family: 'Lato', sans-serif;
-    color: #000000
-    font-size: 8em;
+  /* Set the font color to #7ab55c or a color of your choosing */
+  line
+  color: darkblue;
+  text-align: center;
+  vertical-align: center;
+}
+
+main {
+  /* Set the maximum width of your design to 750px wide */
+  max-width: 700px;
+  /* Set the margin value to be automatically calculated on all sides */
+  margin: auto;
+  text-align:center;
+  vertical-align: center;
+}
+
+/*img {
+  /* Set the width of the image to span 100% wide across its parent container */
+  width: 100%;
+  /*
+    Come back to this after the footer:
+    Designing mobile first, let's hide the image for smaller screen sizes
+  */
+  
+}
+
+/*footer {
+  /* Set the top margin to be 120px away */
+
+  /* Center align the text */
+
+  /* Set the background color to #30373b or a color of your choosing */
+
+  /* Set the font color to be white (or try #ffffff ... do you see a difference?)*/
+
+  /* Set the padding to 20px on all sides */
+}*/
+
+/* When the screen is 500px OR wider, apply the follwoing style rules */
+@media screen and (min-width: 500px) {
+
+  body {
+    /* Change the background-color of the body to white */
+    color: lightblue;
+  }
+
+  /*img {
+    /* Show the image again, set the display value to block */
+  } */
+
 }
