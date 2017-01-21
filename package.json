@@ -1,0 +1,24 @@
+{
+  "name": "stocksim",
+  "version": "1.0.0",
+  "description": "game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+      "express": "3.x",
+      "sockets.io":"0.9"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gucci-ninja/hackathon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gucci-ninja/hackathon/issues"
+  },
+  "homepage": "https://github.com/gucci-ninja/hackathon#readme"
+}
