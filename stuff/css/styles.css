@@ -7,3 +7,67 @@ h1 {
     color: #000000;
     font-size: 16px;
 }
+
+
+/*scrolling stocks*/
+
+.scrolling-stocks {
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    background-color: black;
+}
+
+.scrolling-stocks h4 {
+    font-size: 20px;
+    color: ghostwhite;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    /*animation*/
+    -moz-animation: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: scrolling-stocks 1 15s linear infinite;
+    -webkit-animation: scrolling-stocks 15s linear infinite;
+    animation: scrolling-stocks 15s linear infinite;
+}
+
+@-moz-keyframes scrolling-stocks {
+    0% {
+        -moz-transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes scrolling-stocks {
+    0% {
+        -webkit-transform: translateX(100%);
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+@keyframes scrolling-stocks {
+    0% {
+        -moz-transform: translateX(100%);
+        /* Firefox bug fix */
+        -webkit-transform: translateX(100%);
+        /* Firefox bug fix */
+        transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+        /* Firefox bug fix */
+        -webkit-transform: translateX(-100%);
+        /* Firefox bug fix */
+        transform: translateX(-100%);
+    }
+}
