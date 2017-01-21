@@ -8,9 +8,9 @@ var path = require('path');
 
 
 myapp.configure(function() {
-myapp.use(express.logger('dev'));
-myapp.use(express.bodyParser());
-myapp.use(express.static(path.join(__dirname, 'stuff'))); //puts things in stuff folder
+    myapp.use(express.logger('dev'));
+    myapp.use(express.bodyParser());
+    myapp.use(express.static(path.join(__dirname, 'stuff'))); //puts things in stuff folder
 });
 
 //socket stuff from http://socket.io/docs/
@@ -21,10 +21,10 @@ var io = require('socket.io').listen(server);
 
 //server.listen(3000);
 
-io.sockets.on('connection', function (socket) {
-    socket.emit('connects', {message: "connected!" });
+io.sockets.on('connection', function(socket) {
+    socket.emit('connects', { message: "connected!" });
     console.log('conneted');
-    
+
     socket.on('newGame', function(socket) {
         //do stuff here
         newGameDone();
@@ -34,7 +34,6 @@ io.sockets.on('connection', function (socket) {
 //allows you to actually open app in browser
 //127.0.0.1:3000 after you do node app.js or 8888 or 80
 
-fucntion newGameDone() {
-    socket.emit('newGame', {game: '9321'});
+function newGameDone() {
+    socket.emit('newGame', { game: '9321' });
 }
-
