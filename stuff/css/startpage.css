@@ -4,9 +4,11 @@ body {
     background-color: lightblue;
     color: black;
     padding-top: 110px;
+    text-align: center;
 }
 
 h1 {
+    padding-top: 40px;
     text-align: center;
     font-size: 25px;
     line-height: 0.25;
@@ -38,7 +40,11 @@ h2 {
     background-color: darkblue;
     color: white;
     border: none;
+<<<<<<< HEAD
     padding: 15px 32px;
+=======
+    padding: 20px 40px;
+>>>>>>> 13ccd5e4824bc379c6ae62d41430acabb9cd013b
     text-align: center;
     display: inline-block;
     font-size: 16px;
