@@ -6,14 +6,8 @@
 </head>
 
 <body background="Images/IndexBackground.jpg">
-    <nav class="navbar navbar-fixed-top" role="stocks">
-        <div class="container-fluid scrolling-stocks">
 
-            <script src="Scripts/scroll.js"></script>
-            <h4></h4>
-
-        </div>
-    </nav>
+    <div id="nav-container"></div>
 
     <main>
         <h1>Players Online</h1>
@@ -32,5 +26,10 @@
     <script src="lib/jquery-2.2.4.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#nav-container').load('scrollingStocks.html');
+        })
+    </script>
 
 </body>

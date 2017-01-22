@@ -2,24 +2,26 @@
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/startpage.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-fixed-top" role="stocks">
-        <div class="container-fluid scrolling-stocks">
 
-            <h4>Hello</h4>
-
-        </div>
-    </nav>
+    <div id="nav-container"></div>
 
     <main>
 
-      <h1>Instructions: </h1>
+        <h1>Instructions: </h1>
 
-      <p>Yes cheese</p>
+        <p>Yes cheese</p>
 
     </main>
-  </body>
-</head>
+
+    <script src="lib/jquery-2.2.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#nav-container').load('scrollingStocks.html');
+        });
+    </script>
+
+</body>
