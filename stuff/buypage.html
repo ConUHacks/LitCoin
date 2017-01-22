@@ -3,23 +3,25 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/startpage.css">
+
+    <script src="lib/jquery-2.0.2.min.js"></script>
+    <script src="Scripts/stocks.js"></script>
+
+    <script type="text/javascript">
+        function load_home() {
+            document.getElementById("nav-container").innerHTML = '<object type="text/html" data="scrollingStocks.html" style="width:100%" ></object>'
+        }
+    </script>
 </head>
 
-<body>
+<body onload="load_home()">
 
-    <div id="nav-container"></div>
+    <div id="nav-container" class="navbar-fixed-top"></div>
 
     <main>
 
         <h2>Leftover LENTS</h2>
 
     </main>
-
-    <script src="lib/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#nav-container').load('scrollingStocks.html');
-        });
-    </script>
 
 </body>
