@@ -26,9 +26,18 @@
             new stock("CAE", 10, 0),
             new stock("Microsoft", 10, 0)
         ];
-        for (var i = 0; i < listOfStocks.length; i++) {
-            $('<h4>').html(listOfStocks[i].retName() + ' ' + listOfStocks[i].retChange() + '\t')
+
+        var retStock = (AStock) => {
+            return AStock.retName + " " + AStock.retChange() + "     "
+        };
+
+        var ScrollString = "";
+
+        for (var i in listOfStocks) {
+            ScrollString += retStock(i);
         }
+
+        $('<h4').html(ScrollString);
     </script>
 
 
