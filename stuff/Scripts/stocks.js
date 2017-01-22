@@ -1,18 +1,8 @@
-function stock(name, cost, change) {
+function stock(name, cost, diff) {
 
     this.name = name;
     this.cost = cost;
-    this.change = change;
-
-    this.retName = function() {
-        return name;
-    };
-    this.retCost = function() {
-        return cost;
-    };
-    this.retChange = function() {
-        return change;
-    };
+    this.diff = diff;
 
     this.change = function(numberOfshares, neg) {
         this.change = neg * cost * numberOfshares;
