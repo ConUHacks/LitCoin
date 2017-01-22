@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top" role="stocks">
+        <div class="container-fluid scrolling-stocks">
+            <h4></h4>
+        </div>
+    </nav>
+
+    <script type="text/javascript">
+        for (var i = 0; i < 12; i++) {
+            $('<h4>').html(listOfStocks[i].retName() + ' ' + listOfStocks[i].retChange() + '\t')
+        }
+    </script>
+
+
+</body>

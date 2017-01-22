@@ -7,14 +7,12 @@ body {
 }
 
 h1 {
-    color: white;
     text-align: right;
     font-size: 14px;
     line-height: 0.25;
 }
 
 h2 {
-    color: white;
     font-size: 22px;
     text-align: center;
     vertical-align: center;
@@ -27,65 +25,16 @@ main {
     vertical-align: center;
 }
 
-
-/*scrolling stocks*/
-
-.scrolling-stocks {
-    position: relative;
-    height: 50px;
-    overflow: hidden;
-    background-color: black;
-}
-
-.scrolling-stocks h4 {
-    font-size: 20px;
-    color: ghostwhite;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    line-height: 50px;
+.button {
+    font-size: 48px;
+    font-weight: 700;
+    background-color: navy;
+    color: white;
+    border: none;
+    padding: 15px 32px;
     text-align: center;
-    /*animation*/
-    -moz-animation: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-    /* Apply animation to this element */
-    -moz-animation: scrolling-stocks 1 15s linear infinite;
-    -webkit-animation: scrolling-stocks 15s linear infinite;
-    animation: scrolling-stocks 15s linear infinite;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
-
-@-moz-keyframes scrolling-stocks {
-    0% {
-        -moz-transform: translateX(100%);
-    }
-    100% {
-        -moz-transform: translateX(-100%);
-    }
-}
-
-@-webkit-keyframes scrolling-stocks {
-    0% {
-        -webkit-transform: translateX(100%);
-    }
-    100% {
-        -webkit-transform: translateX(-100%);
-    }
-}
-
-@keyframes scrolling-stocks {
-    0% {
-        -moz-transform: translateX(100%);
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
-    }
-    100% {
-        -moz-transform: translateX(-100%);
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-    }
-}
-
-
-/* end scrolling-stocks */
