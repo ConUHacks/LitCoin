@@ -2,6 +2,7 @@ body {
     /* Set the font family to Helvetica, Arial, sans-serif */
     font-family: Helvetica, Arial, sans-serif;
     line-height: 1.5;
+    padding-top: 50px;
     background-color: lightblue;
     color: black;
     padding-top: 70px;
@@ -92,3 +93,6 @@ main {
 
 
 /* end scrolling-stocks */
+
+
+/* End Stocks */
