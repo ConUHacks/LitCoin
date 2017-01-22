@@ -1,216 +1,234 @@
 var io;
-var gameSocket;
-
+var loopIntervalID = -1;
+var endCountDownLoopID = -1;
+var isInitialized = false;
 /**
  * This function is called by index.js to initialize a new game instance.
  *
  * @param sio The Socket.IO library
  * @param socket The socket object for the connected client.
  */
-exports.initGame = function(sio, socket){
-    io = sio;
-    gameSocket = socket;
-    gameSocket.emit('connected', { message: "You are connected!" });
+exports.initGame = function(sio, socket) {
 
-    // Behind the scenes events
-    gameSocket.on('hostCreateNewGame', hostCreateNewGame);
-   // gameSocket.on('hostRoomFull', hostPrepareGame);
-   // gameSocket.on('hostCountdownFinished', hostStartGame);
-    gameSocket.on('hostNextRound', hostNextRound);
+  io = sio;
+  gameSocket = socket;
+  gameSocket.pingTimeout = 3000;
+  gameSocket.reconnection = false;
+  gameSocket.emit('connected', BOUND, TRACK_LENGTH);
+  //randomly decide if user is good or evil
 
-    // Player Events
-    gameSocket.on('playerJoinGame', playerJoinGame);
-    gameSocket.on('playerBuy', playerBuy);
-    gameSocket.on('playerSell', playerSell);
-    gameSocket.on('playerRestart', playerRestart);
+  numPlayers++;
+  console.log('numplayers:' + numPlayers);
+  io.sockets.emit('giveNumPlayers', numPlayers);
+  // Host Events
+  //gameSocket.on('IAmReadyToPlay', hostReady);
+  gameSocket.on('CoordinateData', updateDataToServer);
+  gameSocket.on('RequestTeam', function() {
+    gameSocket.emit('goodEvil', Math.random());
+    console.log('team requested');
+  });
+  gameSocket.on('disconnect', function() {
+    numPlayers--;
+    io.sockets.emit('giveNumPlayers', numPlayers);
+    console.log('disconnected...numplayers:' + numPlayers);
+    if (numPlayers == 0) {
+      isInitialized = false;
+    }
+  });
+
+  if (!isInitialized) {
+    console.log('initializing...numplayers:' + numPlayers);
+    obstacleArray = [];
+    generateObstacleArray(OBSTACLE_SPACING);
+    isInitialized = true;
+    gameState = GAME_IN_PROGRESS;
+    xPos = 0;
+    yPos = 0;
+    velocity = 0;
+    io.sockets.emit('NewGame');
+    clearInterval(loopIntervalID);
+    loopIntervalID = setInterval(gameloop, timeInterval);
+
+  }
 }
 
-/* *******************************
-   *                             *
-   *       HOST FUNCTIONS        *
-   *                             *
-   ******************************* */
 
-/**
- * The 'START' button was clicked and 'hostCreateNewGame' event occurred.
- */
-function hostCreateNewGame() {
-    // Create basemoney var
-    var baseMoney = 1000;
-    var sock = this;
-    data = {
-        mySocketId : sock.id,
-        gameId : baseMoney
+
+// Game Logic
+
+//course variables
+const BOUND = 400; //distance from center that counts as out of bounds
+
+const TRACK_LENGTH = 4000;
+
+const CAR_WIDTH = 20;
+const CAR_HEIGHT = 35;
+const OBSTACLE_SPACING = 375;
+
+
+//game states
+const GAME_IN_PROGRESS = 1;
+const GAME_OVER_WON = 2;
+const GAME_OVER_LOST = 3;
+
+//obstacle class def
+var Obstacle = function(leftBound, size, yLocation) {
+  this.leftBound = leftBound;
+  this.rightBound = leftBound + size;
+  this.yLocation = yLocation;
+}
+
+Obstacle.prototype.checkCollision = function() {
+  if (xPos > this.leftBound - CAR_WIDTH / 2 && xPos < this.rightBound +
+    CAR_WIDTH / 2) {
+    if (yPos > this.yLocation && yPos < this.yLocation + CAR_HEIGHT + 80) { //50 is obstacle height - can change later
+      return true;
     }
-
-    // Return the money and the socket ID (mySocketId) to the browser client
-    this.emit('newGameCreated', {gameId: baseMoney, mySocketId: this.id});
-
+  }
+  return false;
 };
 
+var xPos = 0.0,
+  yPos = 0.0,
+  velocity = 0.0; // velocity = left/right speed
 
-/*
- * The Countdown has finished, and the game begins!
- * @param gameId The game ID / room ID
+var velocityMultiplier = 0.5; //TODO: calibrate this by testing
+var playerVelocityInput = 0;
+var forwardSpeed = 0.14;
+var numPlayers = 0;
 
-function hostStartGame(gameId) {
-    console.log('Game Started.');
-    sendWord(0,gameId);
-};
- */
-/**
- * A player answered correctly. Time for the next word.
- * @param data Sent from the client. Contains the current round and gameId (room)
- */
-function hostNextRound(data) {
-    if(data.round < wordPool.length ){
-        // Send a new set of words back to the host and players.
-        sendWord(data.round, data.gameId);
-    } else {
-        // If the current round exceeds the number of words, send the 'gameOver' event.
-        io.sockets.in(data.gameId).emit('gameOver',data);
+var gameState = 1;
+
+var timeInterval = 40;
+
+var obstacleArray = [];
+
+function gameloop() {
+
+
+  if (gameState != GAME_IN_PROGRESS || !isInitialized) { //if(gameState != GAME_IN_PROGRESS) {
+
+
+    //  clearInterval(loopIntervalID);
+
+  } else {
+    update(timeInterval);
+
+  }
+  io.sockets.emit('SendDataToClient', xPos, yPos, getRotationValue(),
+    obstacleArray);
+
+
+}
+
+
+
+function updateDataToServer(mouseX, windowWidth) {
+
+//  console.log('Received X coordinate ' + mouseX + " from client!" + windowWidth);
+  //  console.log('Current Velocity:' + velocity);
+  playerVelocityInput = (mouseX - windowWidth / 2.0) / windowWidth;
+  playerVelocityInput = Math.max(-1, Math.min(playerVelocityInput, 1));
+  playerVelocityInput *= velocityMultiplier;
+  updateVelocity(playerVelocityInput);
+  //gameSocket.emit('IHaveReceivedYourCoordinates');
+
+}
+
+function update(deltaTime) {
+  updatePosition(deltaTime);
+  updateGameStatus(checkCollisions());
+}
+
+function updatePosition(deltaTime) {
+  xPos += velocity * deltaTime;
+  yPos += deltaTime * forwardSpeed;
+}
+
+function updateVelocity(newVelocity) { //Adds a player's wheel setting to a moving average, asynchronous
+  if (gameState != GAME_IN_PROGRESS) return;
+  velocity -= velocity / numPlayers; //Call this once per update interval for each user
+  velocity += newVelocity / numPlayers;
+
+}
+
+function updateGameStatus(collisionOccurred) {
+  if (yPos > TRACK_LENGTH) {
+    gameState = GAME_OVER_WON;
+  } else if (collisionOccurred) {
+    gameState = GAME_OVER_LOST;
+  }
+
+
+  if (gameState != GAME_IN_PROGRESS) {
+    endLoopCounter = 5;
+    endCountDownLoopID = setInterval(endLoop, 1000);
+  }
+
+}
+
+var endLoopCounter = 5;
+
+function endLoop() {
+
+  if (endLoopCounter == 5) {
+    if (gameState == GAME_OVER_WON) {
+      io.sockets.emit('GameEnded', true);
+    } else if (gameState == GAME_OVER_LOST) {
+      io.sockets.emit('GameEnded', false);
     }
+  }
+  if (endLoopCounter == 3) io.sockets.emit('ReceiveMessage', "New game in: 3",
+    1000);
+  else if (endLoopCounter == 2) io.sockets.emit('ReceiveMessage',
+    "New game in: 2", 1000);
+  else if (endLoopCounter == 1) io.sockets.emit('ReceiveMessage',
+    "New game in: 1", 1000);
+  else if (endLoopCounter == 0) {
+    clearInterval(endCountDownLoopID);
+    console.log('initializing...numplayers:' + numPlayers);
+    obstacleArray = [];
+    generateObstacleArray(OBSTACLE_SPACING);
+
+    isInitialized = true;
+    gameState = GAME_IN_PROGRESS;
+    xPos = 0;
+    yPos = 0;
+    velocity = 0;
+    //randomly decide if user is good or evil
+    io.sockets.emit('NewGame');
+    clearInterval(loopIntervalID);
+    loopIntervalID = setInterval(gameloop, timeInterval);
+  }
+  endLoopCounter--;
+
 }
-/* *****************************
-   *                           *
-   *     PLAYER FUNCTIONS      *
-   *                           *
-   ***************************** */
 
-/**
- * A player clicked the 'START GAME' button.
- * Attempt to connect them to the room that matches
- * the gameId entered by the player.
- * @param data Contains data entered via player's input - playerName and gameId.
- */
-function playerJoinGame(data) {
-    //console.log('Player ' + data.playerName + 'attempting to join game: ' + data.gameId );
+function checkCollisions() {
+  if (Math.abs(xPos) > BOUND) {
+    return true;
+  }
 
-    // A reference to the player's Socket.IO socket object
-    var sock = this;
-
-    // Look up the room ID in the Socket.IO manager object.
-    var room = gameSocket.manager.rooms["/" + data.gameId];
-
-    // If the room exists...
-    if( room != undefined ){
-        // attach the socket id to the data object.
-        data.mySocketId = sock.id;
-
-        // Join the room
-        sock.join(data.gameId);
-
-        //console.log('Player ' + data.playerName + ' joining game: ' + data.gameId );
-
-        // Emit an event notifying the clients that the player has joined the room.
-        io.sockets.in(data.gameId).emit('playerJoinedRoom', data);
-
-    } else {
-        // Otherwise, send an error message back to the player.
-        this.emit('error',{message: "This room does not exist."} );
+  for (i = 0; i < obstacleArray.length; i++) {
+    if (obstacleArray[i].checkCollision() == true) {
+      return true;
     }
+  }
+
+  return false;
 }
 
-/**
- * A player has tapped a word in the word list.
- * @param data gameId
- */
-function playerAnswer(data) {
-    // console.log('Player ID: ' + data.playerId + ' answered a question with: ' + data.answer);
-
-    // The player's answer is attached to the data object.  \
-    // Emit an event with the answer so it can be checked by the 'Host'
-    io.sockets.in(data.gameId).emit('hostCheckAnswer', data);
+function getRotationValue() {
+  if (velocity == 0) {
+    return 0;
+  }
+  return Math.atan(velocity / forwardSpeed);
 }
 
-/**
- * The game is over, and a player has clicked a button to restart the game.
- * @param data
- */
-function playerRestart(data) {
-    // console.log('Player: ' + data.playerName + ' ready for new game.');
-
-    // Emit the player's data back to the clients in the game room.
-    data.playerId = this.id;
-    io.sockets.in(data.gameId).emit('playerJoinedRoom',data);
+function generateObstacleArray(spacing) {
+  for (i = spacing; i < TRACK_LENGTH; i += spacing) {
+    var newSize = 100 +
+      Math.random() * BOUND;
+    obstacleArray.push(new Obstacle(2 * (Math.random() - 0.5) * BOUND - newSize/2, newSize, i));
+  }
 }
-
-/* *************************
-   *                       *
-   *      GAME LOGIC       *
-   *                       *
-   ************************* */
-
-/**
- * Get a word for the host, and a list of words for the player.
- *
- * @param wordPoolIndex
- * @param gameId The room identifier
- */
-function sendWord(wordPoolIndex, gameId) {
-    var data = getWordData(wordPoolIndex);
-    io.sockets.in(data.gameId).emit('newWordData', data);
-}
-
-
-
-/**
- * Each element in the array provides data for a single round in the game.
- *
- * In each round, two random "words" are chosen as the host word and the correct answer.
- * Five random "decoys" are chosen to make up the list displayed to the player.
- * The correct answer is randomly inserted into the list of chosen decoys.
- *
- * @type {Array}
- */
-var wordPool = [
-    {
-        "words"  : [ "sale","seal","ales","leas" ],
-        "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
-    },
-
-    {
-        "words"  : [ "item","time","mite","emit" ],
-        "decoys" : [ "neat","team","omit","tame","mate","idem","mile","lime","tire","exit" ]
-    },
-
-    {
-        "words"  : [ "spat","past","pats","taps" ],
-        "decoys" : [ "pots","laps","step","lets","pint","atop","tapa","rapt","swap","yaps" ]
-    },
-
-    {
-        "words"  : [ "nest","sent","nets","tens" ],
-        "decoys" : [ "tend","went","lent","teen","neat","ante","tone","newt","vent","elan" ]
-    },
-
-    {
-        "words"  : [ "pale","leap","plea","peal" ],
-        "decoys" : [ "sale","pail","play","lips","slip","pile","pleb","pled","help","lope" ]
-    },
-
-    {
-        "words"  : [ "races","cares","scare","acres" ],
-        "decoys" : [ "crass","scary","seeds","score","screw","cager","clear","recap","trace","cadre" ]
-    },
-
-    {
-        "words"  : [ "bowel","elbow","below","beowl" ],
-        "decoys" : [ "bowed","bower","robed","probe","roble","bowls","blows","brawl","bylaw","ebola" ]
-    },
-
-    {
-        "words"  : [ "dates","stead","sated","adset" ],
-        "decoys" : [ "seats","diety","seeds","today","sited","dotes","tides","duets","deist","diets" ]
-    },
-
-    {
-        "words"  : [ "spear","parse","reaps","pares" ],
-        "decoys" : [ "ramps","tarps","strep","spore","repos","peris","strap","perms","ropes","super" ]
-    },
-
-    {
-        "words"  : [ "stone","tones","steno","onset" ],
-        "decoys" : [ "snout","tongs","stent","tense","terns","santo","stony","toons","snort","stint" ]
-    }
-]
