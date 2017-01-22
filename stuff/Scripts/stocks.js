@@ -4,7 +4,7 @@ function stock(name, cost, change) {
     this.cost = cost;
     this.change = change;
 
-    retName = function() {
+    this.retName = function() {
         return name;
     };
     this.retCost = function() {
