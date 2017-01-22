@@ -1,10 +1,10 @@
 {
   "name": "litcoin",
-  "version": "0.2.5",
   "description": "game",
+  "version": "0.2.5",
   "engines": {
     "node": "6.9.1"
-  }
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
