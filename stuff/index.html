@@ -6,15 +6,17 @@
 
     <script src="lib/jquery-2.0.2.min.js"></script>
     <script src="Scripts/stocks.js"></script>
-    <div id="nav-container"></div>
     <script type="text/javascript">
-        $('#nav-container').load('scrollingStocks.html');
+        function load_home() {
+            document.getElementById("nav-container").innerHTML = '<object type="text/html" data="scrollingStocks.html" ></object>'
+        }
     </script>
 </head>
 
-<body background="Images/IndexBackground.jpg">
+<body background="Images/IndexBackground.jpg" onload="load_home()">
 
 
+    <div id="nav-container" class="position-center"></div>
     <main>
         <h1>Players Online</h1>
         <h1>*num*</h1>

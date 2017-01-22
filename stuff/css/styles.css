@@ -38,3 +38,9 @@ main {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+#nav-container {
+    height: 50px;
+    overflow-y: hidden;
+    vertical-align: center;
+}
