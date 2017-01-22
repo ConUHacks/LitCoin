@@ -20,16 +20,3 @@ function stock(name, cost, change) {
     };
 
 }
-
-var listOfStocks = [
-    new stock("Google", 10),
-    new stock("Yellow Pages", 10),
-    new stock("SAP", 10),
-    new stock("Vigilant: A DRW Company", 10),
-    new stock("Nuance", 10),
-    new stock("Spiria", 10),
-    new stock("Morgan Stanley", 10),
-    new stock("Dr. Constantinides", 10),
-    new stock("CAE", 10),
-    new stock("Microsoft", 10)
-];

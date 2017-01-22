@@ -13,6 +13,19 @@
     </nav>
 
     <script type="text/javascript">
+        
+        var listOfStocks = [
+            new stock("Google", 10),
+            new stock("Yellow Pages", 10),
+            new stock("SAP", 10),
+            new stock("Vigilant: A DRW Company", 10),
+            new stock("Nuance", 10),
+            new stock("Spiria", 10),
+            new stock("Morgan Stanley", 10),
+            new stock("Dr. Constantinides", 10),
+            new stock("CAE", 10),
+            new stock("Microsoft", 10)
+        ];
         for (var i = 0; i < 12; i++) {
             $('<h4>').html(listOfStocks[i].retName() + ' ' + listOfStocks[i].retChange() + '\t')
         }
