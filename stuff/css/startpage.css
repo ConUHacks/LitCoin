@@ -4,7 +4,7 @@ body {
     background-color: lightblue;
     color: black;
     padding-top: 110px;
-} 
+}
 
 h1 {
     text-align: center;
@@ -13,13 +13,13 @@ h1 {
 }
 
 h2 {
-	text-align: left;
-	font-size: 14px;
-	line-height: 0.25;
+    text-align: left;
+    font-size: 14px;
+    line-height: 0.25;
 }
 
 .button {
-	font-size: 48px;
+    font-size: 48px;
     font-weight: 700;
     background-color: navy;
     color: white;
@@ -33,7 +33,7 @@ h2 {
 }
 
 .button1 {
-	font-size: 48px;
+    font-size: 48px;
     font-weight: 700;
     background-color: darkblue;
     color: white;
@@ -44,4 +44,11 @@ h2 {
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+#nav-container {
+    height: 50px;
+    overflow-y: hidden;
+    vertical-align: center;
+    width: 100%;
 }
