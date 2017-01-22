@@ -3,11 +3,17 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+
+    <script src="lib/jquery-2.0.2.min.js"></script>
+    <script src="Scripts/stocks.js"></script>
+    <div id="nav-container"></div>
+    <script type="text/javascript">
+        $('#nav-container').load('scrollingStocks.html');
+    </script>
 </head>
 
 <body background="Images/IndexBackground.jpg">
 
-    <div id="nav-container"></div>
 
     <main>
         <h1>Players Online</h1>
@@ -22,14 +28,6 @@
         <p>3. Be nice!!</p>
     </main>
 
-
-    <script src="lib/jquery-2.0.2.min.js"></script>
-    <script src = "Scripts/stocks.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#nav-container').load('scrollingStocks.html');
-        });
-    </script>
     <script src="app.js"></script>
 
 </body>
