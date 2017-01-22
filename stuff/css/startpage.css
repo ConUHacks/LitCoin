@@ -14,7 +14,7 @@ h1 {
 
 h2 {
     text-align: left;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 0.25;
 }
 
@@ -44,7 +44,7 @@ h2 {
     font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
-    vertical-align: center;
+    margin: auto;
 }
 
 #nav-container {
