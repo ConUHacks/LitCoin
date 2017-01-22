@@ -7,5 +7,5 @@ stocks and stuff works. We *tried* to implement socket.io to allow multiple play
 
 Team Name: Tuples1
 Contains: Joseph Lu - the Soylent hoarder
-          Shabana Dhayananth - the html pro
-          Suhavi Sandhu - the pusher and puller of all gits everywhere
+          <nl>Shabana Dhayananth - the html intermediate learner
+          <nl>Suhavi Sandhu - the pusher and puller of all gits everywhere
