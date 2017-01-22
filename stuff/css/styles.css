@@ -43,4 +43,5 @@ main {
     height: 50px;
     overflow-y: hidden;
     vertical-align: center;
+    width: 100%;
 }
