@@ -1,0 +1,27 @@
+{
+  "name": "litcoin",
+  "description": "game",
+  "version": "0.2.5",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "0.9",
+    "express": "3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gucci-ninja/ConUHacks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gucci-ninja/hackathon/issues"
+  },
+  "homepage": "https://github.com/gucci-ninja/hackathon#readme",
+  "devDependencies": {}
+}
