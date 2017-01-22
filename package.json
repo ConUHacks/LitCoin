@@ -1,9 +1,9 @@
 {
   "name": "litcoin",
-  "version": "0.2.5",
   "description": "game",
+  "version": "0.2.5",
   "engines": {
-    "node": "5.9.1"
+    "node": "6.9.1"
   },
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "socket": "3.10.8",
-    "express": "3.10.8"
+    "socket.io": "0.9",
+    "express": "3.x"
   },
   "repository": {
     "type": "git",

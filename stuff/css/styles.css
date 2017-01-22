@@ -37,11 +37,23 @@ h2 {
   vertical-align: center;
 }
 
+button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 48px;
+}
+
+h1 {
+    /* Set the font color to #7ab55c or a color of your choosing */
+    color: darkblue;
+    text-align: center;
+    vertical-align: center;
+}
+
 main {
-  max-width: 700px;
-  margin: auto;
-  text-align:center;
-  vertical-align: center;
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
 }
 
 
@@ -107,3 +119,9 @@ main {
         transform: translateX(-100%);
     }
 }
+
+
+/* end scrolling-stocks */
+
+
+/* End Stocks */
