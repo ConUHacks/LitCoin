@@ -1,14 +1,13 @@
 body {
-  /* Set the font family to Helvetica, Arial, sans-serif */
   font-family: Helvetica, Arial, sans-serif;
   line-height: 0.5;
-  background-color: lightblue;
-  color: black;
+  background-size: 100% ;
+  color: white;
   padding-top: 110px;
 }
 
 h1 {
-  color: black;
+  color: white;
   text-align: right;
   font-size: 14px;
   line-height: 0.25;
@@ -17,7 +16,8 @@ h1 {
 .button {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 48px;
-  background-color: red;
+  font-weight: 700;
+  background-color: navy;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -30,23 +30,11 @@ h1 {
 
 h2 {
 
-  color: darkblue;
-  font-size: 24px;
+  color: white;
+  font-size: 22px;
 
   text-align: center;
   vertical-align: center;
-}
-
-button {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 48px;
-}
-
-h1 {
-    /* Set the font color to #7ab55c or a color of your choosing */
-    color: darkblue;
-    text-align: center;
-    vertical-align: center;
 }
 
 main {
