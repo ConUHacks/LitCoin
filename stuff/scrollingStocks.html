@@ -26,7 +26,7 @@
             new stock("CAE", 10),
             new stock("Microsoft", 10)
         ];
-        for (var i = 0; i < 12; i++) {
+        for (var i = 0; i < listOfStocks.length; i++) {
             $('<h4>').html(listOfStocks[i].retName() + ' ' + listOfStocks[i].retChange() + '\t')
         }
     </script>
