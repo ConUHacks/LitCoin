@@ -1,3 +1,5 @@
+jQuery(function($){    
+    'use strict';
 // taken from http://socket.io/docs/
 var numPlayers = 0
 fucntion() {
@@ -34,3 +36,4 @@ fucntion() {
 };
 
 IO.init();
+} ($));

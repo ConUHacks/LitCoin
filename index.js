@@ -6,7 +6,7 @@ var path = require('path');
 var app = express();
 
 // import game file
-var brakedown = require('./litcoin.js');
+var litcoin = require('./litcoin');
 
 // join html css from stuff directory
 app.use(express.static(path.join(__dirname, 'stuff')));
@@ -29,7 +29,7 @@ io.set('log level', 1);
 // Listen for Socket.IO Connections. Once connected, start the game logic.
 io.sockets.on('connection', function(socket) {
     console.log('Someone has connected!');
-    brakedown.initGame(io, socket);
+    litcoin.initGame(io, socket);
 });
 
 io.sockets.on('disconnect', function() {
