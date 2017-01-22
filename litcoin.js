@@ -1,7 +1,7 @@
 
 
 //game logic
-
+/*
 var money = 1000;
 var shares = document.getElementById('shares_box');
 
@@ -22,4 +22,4 @@ if (event.pageX == sell) {
         }
 
 }
-IO.init()
+IO.init()*/
