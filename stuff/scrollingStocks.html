@@ -8,37 +8,40 @@
 <body>
     <nav class="navbar navbar-fixed-top" role="stocks">
         <div class="container-fluid scrolling-stocks">
-            <h4></h4>
+            <script src="lib/jquery-2.0.2.min.js"></script>
+            <script src="Scripts/stocks.js"></script>
+            <h4>
+                <script type="text/javascript">
+                    var listOfStocks = [
+                        new stock("Google", 10, 0),
+                        new stock("Yellow Pages", 10, 0),
+                        new stock("SAP", 10, 0),
+                        new stock("Vigilant: A DRW Company", 10, 0),
+                        new stock("Nuance", 10, 0),
+                        new stock("Spiria", 10, 0),
+                        new stock("Morgan Stanley", 10, 0),
+                        new stock("Dr. Constantinides", 10, 0),
+                        new stock("CAE", 10, 0),
+                        new stock("Microsoft", 10, 0)
+                    ];
+
+                    var retStock = (AStock) => {
+                        return AStock.name + " " + AStock.diff + " | "
+                    };
+
+                    var ScrollString = "";
+
+                    for (var i in listOfStocks) {
+                        ScrollString += retStock(listOfStocks[i]);
+                    }
+
+                    document.write(ScrollString);
+                </script>
+            </h4>
         </div>
     </nav>
 
-    <script src="lib/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript">
-        var listOfStocks = [
-            new stock("Google", 10, 0),
-            new stock("Yellow Pages", 10, 0),
-            new stock("SAP", 10, 0),
-            new stock("Vigilant: A DRW Company", 10, 0),
-            new stock("Nuance", 10, 0),
-            new stock("Spiria", 10, 0),
-            new stock("Morgan Stanley", 10, 0),
-            new stock("Dr. Constantinides", 10, 0),
-            new stock("CAE", 10, 0),
-            new stock("Microsoft", 10, 0)
-        ];
 
-        var retStock = (AStock) => {
-            return AStock.retName + " " + AStock.retChange + "     "
-        };
-
-        var ScrollString = "";
-
-        for (var i in listOfStocks) {
-            ScrollString += retStock(i);
-        }
-
-        $('<h4>').html(ScrollString);
-    </script>
 
 
 </body>
