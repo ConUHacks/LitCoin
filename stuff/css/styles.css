@@ -1,26 +1,38 @@
 body {
   /* Set the font family to Helvetica, Arial, sans-serif */
   font-family: Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 0.5;
   background-color: lightblue;
   color: black;
-  padding-top: 70px;
-}
-
-button {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 48px;
+  padding-top: 110px;
 }
 
 h1 {
-<<<<<<< HEAD
-    font-family: 'Lato', sans-serif;
-    color: #000000;
-    font-size: 16px;
-=======
-  /* Set the font color to #7ab55c or a color of your choosing */
-  line
+  color: black;
+  text-align: right;
+  font-size: 14px;
+  line-height: 0.25;
+}
+
+.button {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+h2 {
+
   color: darkblue;
+  font-size: 24px;
+
   text-align: center;
   vertical-align: center;
 }
