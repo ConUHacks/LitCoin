@@ -12,19 +12,19 @@
         </div>
     </nav>
 
+    <script src="lib/jquery-2.0.2.min.js"></script>
     <script type="text/javascript">
-        
         var listOfStocks = [
-            new stock("Google", 10),
-            new stock("Yellow Pages", 10),
-            new stock("SAP", 10),
-            new stock("Vigilant: A DRW Company", 10),
-            new stock("Nuance", 10),
-            new stock("Spiria", 10),
-            new stock("Morgan Stanley", 10),
-            new stock("Dr. Constantinides", 10),
-            new stock("CAE", 10),
-            new stock("Microsoft", 10)
+            new stock("Google", 10, 0),
+            new stock("Yellow Pages", 10, 0),
+            new stock("SAP", 10, 0),
+            new stock("Vigilant: A DRW Company", 10, 0),
+            new stock("Nuance", 10, 0),
+            new stock("Spiria", 10, 0),
+            new stock("Morgan Stanley", 10, 0),
+            new stock("Dr. Constantinides", 10, 0),
+            new stock("CAE", 10, 0),
+            new stock("Microsoft", 10, 0)
         ];
         for (var i = 0; i < listOfStocks.length; i++) {
             $('<h4>').html(listOfStocks[i].retName() + ' ' + listOfStocks[i].retChange() + '\t')
