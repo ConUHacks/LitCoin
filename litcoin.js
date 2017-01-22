@@ -1,6 +1,6 @@
-var io;
 
-exports.initGame = function(sio, socket) {
+
+/*exports.initGame = function(sio, socket) {
     io = socket;
     
 }
@@ -11,7 +11,7 @@ gameSocket.emit('connected')
 
 numPlayers++;
 console.log('numplayers:' + numPlayers);
-
+*/
 
 
 //game logic

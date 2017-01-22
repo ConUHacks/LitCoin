@@ -1,4 +1,4 @@
-function() {
+/*function() {
     
     var IO = {
         //io stuff
@@ -14,4 +14,4 @@ function() {
 
 }
 
-IO.init(); 
+IO.init(); */
